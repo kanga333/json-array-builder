@@ -20,5 +20,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
+        id: test1
         with:
-          milliseconds: 1000
+          str: |
+            action
+            branch
+            change
+      - run: |
+          echo ${{ steps.test1.outputs.build }}
+      - uses: ./
+        id: test2
+        with:
+          str: a b c
+          separator: 'space'
+      - run: |
+          echo ${{ steps.test2.outputs.build }}

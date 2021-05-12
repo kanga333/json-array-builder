@@ -1,16 +1,20 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const str: string = core.getInput('str')
+    core.info(`str ${str}`)
+    let separator: string = core.getInput('separator')
+    if (separator === 'newline') {
+      separator = '\n'
+    }
+    if (separator === 'space') {
+      separator = ' '
+    }
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const splited: string[] = str.split(separator)
+    const build = JSON.stringify(splited)
+    core.setOutput('build', build)
   } catch (error) {
     core.setFailed(error.message)
   }
