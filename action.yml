@@ -1,6 +1,6 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'array-builder'
+description: 'Build JSON array from string'
+author: 'kanga333'
 inputs:
   str:
     required: true
