@@ -3,6 +3,32 @@ require('./sourcemap-register.js');module.exports =
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 900:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.buildArray = void 0;
+function buildArray(str, separator) {
+    const converted = convert_separator(separator);
+    const splited = str.split(converted);
+    return JSON.stringify(splited);
+}
+exports.buildArray = buildArray;
+function convert_separator(separator) {
+    switch (separator) {
+        case 'newline':
+            return '\n';
+        case 'space':
+            return ' ';
+        default:
+            return separator;
+    }
+}
+
+
+/***/ }),
+
 /***/ 109:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -37,20 +63,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(186));
+const builder_1 = __webpack_require__(900);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const str = core.getInput('str');
-            core.info(`str ${str}`);
-            let separator = core.getInput('separator');
-            if (separator === 'newline') {
-                separator = '\n';
-            }
-            if (separator === 'space') {
-                separator = ' ';
-            }
-            const splited = str.split(separator);
-            const build = JSON.stringify(splited);
+            const separator = core.getInput('separator');
+            const build = builder_1.buildArray(str, separator);
             core.setOutput('build', build);
         }
         catch (error) {

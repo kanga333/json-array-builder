@@ -20,18 +20,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
-        id: test1
+        id: newline
         with:
           str: |
-            action
-            branch
-            change
+            a
+            b
+            c
       - run: |
           echo ${{ steps.test1.outputs.build }}
       - uses: ./
-        id: test2
+        id: space
         with:
           str: a b c
           separator: 'space'
       - run: |
-          echo ${{ steps.test2.outputs.build }}
+          echo ${{ steps.space.outputs.build }}
+      - uses: ./
+        id: csv
+        with:
+          str: a,b,c
+          separator: ','
+      - run: |
+          echo ${{ steps.csv.outputs.build }}
