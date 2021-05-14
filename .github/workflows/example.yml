@@ -1,0 +1,31 @@
+name: 'example'
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  matrix_input:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: export
+        run: |
+          echo ::set-output name=src_files::$(ls src)
+      - uses: ./
+        id: array
+        with:
+          str: ${{steps.export.outputs.src_files }}
+          separator: space
+    outputs:
+      param: ${{ steps.array.outputs.build }}
+  dynamic_matrix:
+    needs:
+      - matrix_input
+    strategy:
+      matrix:
+        param: ${{ fromJson(needs.matrix_input.outputs.param) }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ matrix.param }}
