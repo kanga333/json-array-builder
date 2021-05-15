@@ -41,3 +41,10 @@ jobs:
           separator: ','
       - run: |
           test '${{ steps.csv.outputs.build }}' = '["a","b","c"]'
+      - uses: ./
+        id: append
+        with:
+          str: d
+          append_to: ${{ steps.newline.outputs.build }}
+      - run: |
+          test '${{ steps.append.outputs.build }}' = '["a","b","c","d"]'

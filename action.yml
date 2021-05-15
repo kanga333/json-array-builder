@@ -9,6 +9,8 @@ inputs:
     required: false
     description: ''
     default: 'newline'
+  append_to:
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
