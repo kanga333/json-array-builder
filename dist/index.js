@@ -9,9 +9,14 @@ require('./sourcemap-register.js');module.exports =
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.buildArray = void 0;
-function buildArray(str, separator) {
+function buildArray(str, separator, append_to) {
     const converted = convert_separator(separator);
     const splited = str.split(converted);
+    if (append_to !== '') {
+        const dest = JSON.parse(append_to);
+        dest.push(...splited);
+        return JSON.stringify(dest);
+    }
     return JSON.stringify(splited);
 }
 exports.buildArray = buildArray;
@@ -69,7 +74,8 @@ function run() {
         try {
             const str = core.getInput('str');
             const separator = core.getInput('separator');
-            const build = builder_1.buildArray(str, separator);
+            const append_to = core.getInput('append_to');
+            const build = builder_1.buildArray(str, separator, append_to);
             core.setOutput('build', build);
         }
         catch (error) {
