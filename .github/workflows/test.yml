@@ -42,6 +42,13 @@ jobs:
       - run: |
           test '${{ steps.csv.outputs.build }}' = '["a","b","c"]'
       - uses: ./
+        id: cmd
+        with:
+          cmd_stdout: echo a b c
+          separator: 'space'
+      - run: |
+          test '${{ steps.cmd.outputs.build }}' = '["a","b","c"]'
+      - uses: ./
         id: append
         with:
           str: d
