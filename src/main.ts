@@ -11,7 +11,7 @@ function validate_options(str: string, cmd_stdout: string): void {
 async function run(): Promise<void> {
   try {
     const str: string = core.getInput('str')
-    const cmd_stdout: string = core.getInput('cmd')
+    const cmd_stdout: string = core.getInput('cmd_stdout')
     const separator: string = core.getInput('separator')
     const append_to: string = core.getInput('append_to')
 

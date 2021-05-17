@@ -133,7 +133,7 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const str = core.getInput('str');
-            const cmd_stdout = core.getInput('cmd');
+            const cmd_stdout = core.getInput('cmd_stdout');
             const separator = core.getInput('separator');
             const append_to = core.getInput('append_to');
             validate_options(str, cmd_stdout);
