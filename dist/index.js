@@ -71,16 +71,18 @@ exports.execCmd = void 0;
 const exec = __importStar(__webpack_require__(514));
 function execCmd(cmd) {
     return __awaiter(this, void 0, void 0, function* () {
-        let output = '';
+        const outputs = [];
         const options = {
             listeners: {
                 stdout: (data) => {
-                    output += data.toString().trim();
+                    outputs.push(data.toString().trim());
                 }
             }
         };
-        yield exec.exec(cmd, [], options);
-        return output;
+        for (const cmdline of cmd.trim().split('\n')) {
+            yield exec.exec(cmdline, [], options);
+        }
+        return outputs.join('\n');
     });
 }
 exports.execCmd = execCmd;

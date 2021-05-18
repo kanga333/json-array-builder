@@ -1,14 +1,16 @@
 import * as exec from '@actions/exec'
 
 export async function execCmd(cmd: string): Promise<string> {
-  let output = ''
+  const outputs: string[] = []
   const options = {
     listeners: {
       stdout: (data: Buffer) => {
-        output += data.toString().trim()
+        outputs.push(data.toString().trim())
       }
     }
   }
-  await exec.exec(cmd, [], options)
-  return output
+  for (const cmdline of cmd.trim().split('\n')) {
+    await exec.exec(cmdline, [], options)
+  }
+  return outputs.join('\n')
 }
