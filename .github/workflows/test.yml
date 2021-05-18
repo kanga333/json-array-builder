@@ -44,8 +44,10 @@ jobs:
       - uses: ./
         id: cmd
         with:
-          cmd_stdout: echo a b c
-          separator: 'space'
+          cmd_stdout: |
+            echo a
+            echo b
+            echo c
       - run: |
           test '${{ steps.cmd.outputs.build }}' = '["a","b","c"]'
       - uses: ./
