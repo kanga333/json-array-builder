@@ -12,7 +12,7 @@ jobs:
       - uses: ./
         id: array
         with:
-          cmd_stdout: ls src
+          cmd: ls src
     outputs:
       param: ${{ steps.array.outputs.build }}
   dynamic_matrix:
