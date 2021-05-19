@@ -26,6 +26,7 @@ async function run(): Promise<void> {
     const build: string = buildArray(str_to_separate, separator, append_to)
     core.setOutput('build', build)
   } catch (error) {
+    core.error(error)
     core.setFailed(error.message)
   }
 }
