@@ -44,7 +44,7 @@ jobs:
       - uses: ./
         id: cmd
         with:
-          cmd_stdout: |
+          cmd: |
             echo a
             echo b
             echo c
@@ -54,6 +54,6 @@ jobs:
         id: append
         with:
           str: d
-          append_to: ${{ steps.newline.outputs.build }}
+          json_array: ${{ steps.newline.outputs.build }}
       - run: |
           test '${{ steps.append.outputs.build }}' = '["a","b","c","d"]'

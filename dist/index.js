@@ -9,11 +9,11 @@ require('./sourcemap-register.js');module.exports =
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.buildArray = void 0;
-function buildArray(str, separator, append_to) {
+function buildArray(str, separator, json_array) {
     const converted = convert_separator(separator);
     const splited = str.split(converted);
-    if (append_to !== '') {
-        const dest = JSON.parse(append_to);
+    if (json_array !== '') {
+        const dest = JSON.parse(json_array);
         dest.push(...splited);
         return JSON.stringify(dest);
     }
@@ -126,30 +126,31 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(186));
 const builder_1 = __webpack_require__(900);
 const execer_1 = __webpack_require__(244);
-function validate_options(str, cmd_stdout) {
-    if ((str === '') === (cmd_stdout === '')) {
-        throw new Error('Need to use only either str or cmd_stdout');
+function validate_options(str, cmd) {
+    if ((str === '') === (cmd === '')) {
+        throw new Error('Need to use only either str or cmd');
     }
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const str = core.getInput('str');
-            const cmd_stdout = core.getInput('cmd_stdout');
+            const cmd = core.getInput('cmd');
             const separator = core.getInput('separator');
-            const append_to = core.getInput('append_to');
-            validate_options(str, cmd_stdout);
+            const json_array = core.getInput('json_array');
+            validate_options(str, cmd);
             let str_to_separate;
-            if (cmd_stdout !== '') {
-                str_to_separate = yield execer_1.execCmd(cmd_stdout);
+            if (cmd !== '') {
+                str_to_separate = yield execer_1.execCmd(cmd);
             }
             else {
                 str_to_separate = str;
             }
-            const build = builder_1.buildArray(str_to_separate, separator, append_to);
+            const build = builder_1.buildArray(str_to_separate, separator, json_array);
             core.setOutput('build', build);
         }
         catch (error) {
+            core.error(error);
             core.setFailed(error.message);
         }
     });

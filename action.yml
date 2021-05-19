@@ -5,14 +5,14 @@ inputs:
   str:
     required: false
     description: ''
-  cmd_stdout:
+  cmd:
     required: false
     description: ''
   separator:
     required: false
     description: ''
     default: 'newline'
-  append_to:
+  json_array:
     required: false
 runs:
   using: 'node12'

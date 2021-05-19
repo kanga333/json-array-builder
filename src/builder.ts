@@ -1,12 +1,12 @@
 export function buildArray(
   str: string,
   separator: string,
-  append_to: string
+  json_array: string
 ): string {
   const converted = convert_separator(separator)
   const splited: string[] = str.split(converted)
-  if (append_to !== '') {
-    const dest: string[] = JSON.parse(append_to)
+  if (json_array !== '') {
+    const dest: string[] = JSON.parse(json_array)
     dest.push(...splited)
     return JSON.stringify(dest)
   }
