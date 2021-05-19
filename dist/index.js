@@ -69,6 +69,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.execCmd = void 0;
 const exec = __importStar(__webpack_require__(514));
+const core = __importStar(__webpack_require__(186));
 function execCmd(cmd) {
     return __awaiter(this, void 0, void 0, function* () {
         const outputs = [];
@@ -80,6 +81,7 @@ function execCmd(cmd) {
             }
         };
         for (const cmdline of cmd.trim().split('\n')) {
+            core.info(`Execute command: ${cmdline}`);
             yield exec.exec(cmdline, [], options);
         }
         return outputs.join('\n');
@@ -150,6 +152,7 @@ function run() {
             core.setOutput('build', build);
         }
         catch (error) {
+            core.error(error);
             core.setFailed(error.message);
         }
     });

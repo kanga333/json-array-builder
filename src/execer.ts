@@ -1,4 +1,5 @@
 import * as exec from '@actions/exec'
+import * as core from '@actions/core'
 
 export async function execCmd(cmd: string): Promise<string> {
   const outputs: string[] = []
@@ -10,6 +11,7 @@ export async function execCmd(cmd: string): Promise<string> {
     }
   }
   for (const cmdline of cmd.trim().split('\n')) {
+    core.info(`Execute command: ${cmdline}`)
     await exec.exec(cmdline, [], options)
   }
   return outputs.join('\n')
