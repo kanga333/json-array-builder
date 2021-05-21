@@ -1,4 +1,4 @@
-name: 'array-builder'
+name: 'json-array-builder'
 description: 'Build JSON array from string'
 author: 'kanga333'
 inputs:

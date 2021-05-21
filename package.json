@@ -1,5 +1,5 @@
 {
-  "name": "array-builder",
+  "name": "json-array-builder",
   "version": "0.0.0",
   "private": true,
   "description": "Build JSON array from string",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kanga333/array-builder.git"
+    "url": "git+https://github.com/kanga333/json-array-builder.git"
   },
   "keywords": [
     "actions",
