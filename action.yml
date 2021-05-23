@@ -4,16 +4,24 @@ author: 'kanga333'
 inputs:
   str:
     required: false
-    description: ''
+    description: |
+      String to split by separator to build JSON array.
+      str cannot be used with cmd at the same time.
   cmd:
     required: false
-    description: ''
+    description: |
+      Execute the given command and use the stdout to split by separator to build JSON array.
+      str cannot be used with cmd at the same time.
   separator:
     required: false
-    description: ''
     default: 'newline'
+    description: |
+      String to separate a given input.
+      If you need to separate by '\n', please specify the value as 'newline'.
+      Also, if you need to separate by ' ', please specify the value as 'space'.
   json_array:
     required: false
+    description: If given JSON array string, this action appends to it.
 runs:
   using: 'node12'
   main: 'dist/index.js'
