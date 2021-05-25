@@ -1,5 +1,5 @@
 name: 'json-array-builder'
-description: 'Build JSON array from string'
+description: 'Build JSON array to be used in dynamic matrix job'
 author: 'kanga333'
 inputs:
   str:
