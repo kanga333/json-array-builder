@@ -1,5 +1,8 @@
 name: 'json-array-builder'
 description: 'Build JSON array to be used in dynamic matrix job'
+branding:
+  color: blue
+  icon: align-justify
 author: 'kanga333'
 inputs:
   str:
