@@ -1,6 +1,6 @@
 {
   "name": "json-array-builder",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Build JSON array from string",
   "main": "lib/main.js",
