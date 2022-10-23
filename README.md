@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: kanga333/json-array-builder@master
+      - uses: kanga333/json-array-builder@main
         id: array
         with:
           # Using this repository as an example, the output of the command is
