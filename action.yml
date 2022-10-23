@@ -26,5 +26,5 @@ inputs:
     required: false
     description: If given JSON array string, this action appends to it.
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
