@@ -26,8 +26,7 @@ async function run(): Promise<void> {
     const build: string = buildArray(str_to_separate, separator, json_array)
     core.setOutput('build', build)
   } catch (error) {
-    core.error(error)
-    core.setFailed(error.message)
+    if (error instanceof Error) core.setFailed(error.message)
   }
 }
 
